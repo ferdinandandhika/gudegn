@@ -29,14 +29,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($username == "admin" && password_verify($password, $user["password"])) {
                 header('Location: admin_dashboard.php');
             } else {
-                header('Location: menu.php');
+                header('Location: index.php');
             }
             exit();
         } else {
             $error_message = "Password salah!";
         }
     } else {
-        $error_message = "User tidak ditemukan!";
+        $error_message = "User tidak ditemukan! Silahkan Register terlebih dahulu";
     }
 
     $conn->close();
@@ -56,13 +56,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <a href="#" class="navbar-logo">GUDEG JOGJA IBU DIRJO</a>
         <div class="navbar-nav">
             <?php if (isset($_SESSION['fullname'])): ?>
-                <span>Welcome, <?php echo $_SESSION['fullname']; ?></span>
+                <span>Selamat datang, <?php echo $_SESSION['fullname']; ?></span>
                 <a href="logout.php">Logout</a>
             <?php else: ?>
                 <a href="index.php">Home</a>
-                <a href="tentang.php">About</a>
-                <a href="menu.php">Menu</a>
-                <a href="kontak.php">Contact</a>
+                <a href="tentang.php">Tentang</a>
+                <a href="menu.php">Daftar Menu</a>
+                <a href="kontak.php">Kontak</a>
                 <a href="register.php">Register</a>
             <?php endif; ?>
         </div>
@@ -79,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
             <button type="submit" class="btn-login">Login</button>
+            <a href="reset_password.php" class="forgot-password">Lupa Password?</a>
         </form>
     </section>
     <!-- Add background image to the body -->

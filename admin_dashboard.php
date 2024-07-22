@@ -102,8 +102,9 @@ while($row = $result->fetch_assoc()) {
     <nav class="navbar">
         <a href="#" class="navbar-logo">GUDEG JOGJA IBU DIRJO</a>
         <div class="navbar-nav">
-            <span>Welcome, <?php echo $_SESSION['fullname']; ?></span>
-            <a href="user_management.php">Manage Users</a> <!-- Link to user management page -->
+            <span>Selamat datang, <?php echo $_SESSION['fullname']; ?></span>
+            <a href="user_management.php">Admin Web</a> 
+            <a href="admin_menu.php">Kelola Menu</a>
             <a href="logout.php">Logout</a>
         </div>
     </nav>
@@ -121,7 +122,7 @@ while($row = $result->fetch_assoc()) {
                     <th>Metode Pembayaran</th>
                     <th>Jenis Pesanan</th>
                     <th>Status</th>
-                    <th>Payment Proof</th>
+                    <th>Bukti Pembayaran</th>
                     <th>Print</th>
                 </tr>
             </thead>
@@ -145,14 +146,14 @@ while($row = $result->fetch_assoc()) {
                     <td><?php echo $row['order_type']; ?></td>
                     <td>
                         <button onclick="setStatus(<?php echo $row['id']; ?>, this)" class="status-button <?php echo $row['status'] == 'completed' ? 'completed' : ''; ?>" data-order-id="<?php echo $row['id']; ?>" <?php echo $row['status'] == 'completed' ? 'disabled' : ''; ?>>
-                            <?php echo $row['status'] == 'completed' ? 'Selesai' : 'Pending'; ?>
+                            <?php echo $row['status'] == 'completed' ? 'Selesai' : 'Sedang diproses'; ?>
                         </button>
                     </td>
                     <td>
                         <?php if ($row['payment_proof']): ?>
                             <img src="data:image/jpeg;base64,<?php echo base64_encode($row['payment_proof']); ?>" alt="Payment Proof" style="width: 100px; height: auto;" onclick="openModal(this)">
                         <?php else: ?>
-                            No Proof
+                            Belum ada bukti pembayaran
                         <?php endif; ?>
                     </td>
                     <td><button onclick="printOrder(<?php echo $row['id']; ?>)" class="print-button" data-order-id="<?php echo $row['id']; ?>">Print</button></td>
@@ -199,9 +200,9 @@ while($row = $result->fetch_assoc()) {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
                         button.innerText = 'Selesai';
-                        button.classList.add('completed'); // Mengubah warna tombol menjadi hijau
-                        button.classList.remove('status-button'); // Menghapus kelas status-button
-                        button.disabled = true; // Menonaktifkan tombol
+                        button.classList.add('completed'); 
+                        button.classList.remove('status-button'); 
+                        button.disabled = true; 
                     } else {
                         alert('Failed to update status.');
                     }

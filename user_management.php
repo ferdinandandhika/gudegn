@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['username']) || $_SESSION['username'] != 'admin') {
-    header('Location: login.php'); // Redirect to login page if not admin
+    header('Location: login.php'); 
     exit();
 }
 
@@ -130,8 +130,9 @@ while($row = $result->fetch_assoc()) {
     <nav class="navbar">
         <a href="admin_dashboard.php" class="navbar-logo">GUDEG JOGJA IBU DIRJO</a>
         <div class="navbar-nav">
-            <span>Welcome, <?php echo $_SESSION['fullname']; ?></span>
-            <a href="admin_dashboard.php">Dashboard</a> <!-- Link to admin dashboard -->
+            <span>Selamat datang, <?php echo $_SESSION['fullname']; ?></span>
+            <a href="admin_dashboard.php">Admin Toko</a> 
+            <a href="admin_menu.php">Kelola Menu</a>
             <a href="logout.php">Logout</a>
         </div>
     </nav>

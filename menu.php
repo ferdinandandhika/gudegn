@@ -18,9 +18,9 @@ session_start();
       background-color: #f5f5f5;
       margin: 0;
       padding: 0;
-      background-size: cover; /* Add this line */
-      background-repeat: no-repeat; /* Add this line */
-      background-position: center; /* Add this line */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
     }
 
     .navbar {
@@ -75,8 +75,8 @@ session_start();
 
     .menu-items {
       background-color: #eabe6e; 
-      width: 100%; /* Change max-width to width */
-      margin: 0; /* Remove auto margin */
+      width: 100%;
+      margin: 0;
       padding: 20px;
     }
 
@@ -87,7 +87,7 @@ session_start();
 
     .menu-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr); /* Ensure 3 items per row */
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
     }
 
@@ -97,7 +97,7 @@ session_start();
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       transition: transform 0.3s, box-shadow 0.3s;
-      margin-bottom: 20px; /* Added margin-bottom for spacing */
+      margin-bottom: 20px;
     }
 
     .menu-item:hover {
@@ -194,12 +194,12 @@ session_start();
       border-radius: 5px;
       flex: 1;
       margin: 0 5px;
-      transition: transform 0.3s, background-color 0.3s; /* Smooth transition */
+      transition: transform 0.3s, background-color 0.3s;
     }
 
     .btn-order:hover {
-      background-color: #ec971f; /* Change background color on hover */
-      transform: scale(1.05); /* Slightly increase the size */
+      background-color: #ec971f;
+      transform: scale(1.05);
     }
 
     .btn-order:first-child {
@@ -216,8 +216,8 @@ session_start();
       z-index: 1;
       left: 0;
       top: 0;
-      width: 100%; /* Make the modal full width */
-      height: 100%; /* Make the modal full height */
+      width: 100%;
+      height: 100%;
       overflow: auto;
       background-color: rgba(0, 0, 0, 0.4);
     }
@@ -228,7 +228,7 @@ session_start();
       padding: 20px;
       border: 1px solid #888;
       width: 80%;
-      max-width: 600px; /* Limit the maximum width if needed */
+      max-width: 600px;
       border-radius: 10px;
     }
 
@@ -277,13 +277,17 @@ session_start();
 
         <div class="navbar-nav">
             <?php if (isset($_SESSION['fullname'])): ?>
-                <span>Welcome, <?php echo $_SESSION['fullname']; ?></span>
+                <span>Selamat datang, <?php echo $_SESSION['fullname']; ?></span>
+                <a href="index.php">Beranda</a>
+                <a href="tentang.php">Tentang</a>
+                <a href="menu.php">Daftar Menu</a>
+                <a href="kontak.php">Kontak</a>
                 <a href="logout.php">Logout</a>
             <?php else: ?>
-                <a href="index.php">Home</a>
-                <a href="tentang.php">About</a>
-                <a href="menu.php">Menu</a>
-                <a href="kontak.php">Contact</a>
+                <a href="index.php">Beranda</a>
+                <a href="tentang.php">Tentang</a>
+                <a href="menu.php">Daftar Menu</a>
+                <a href="kontak.php">Kontak</a>
                 <a href="login.php">Login</a>
             <?php endif; ?>
         </div>
@@ -297,96 +301,20 @@ session_start();
     <section class="menu-items">
         <h2>Daftar Menu</h2>
         <div class="menu-grid">
+            <?php
+            include 'db.php';
+            $sql = "SELECT * FROM menu_items";
+            $result = $conn->query($sql);
+            while($row = $result->fetch_assoc()):
+            ?>
             <div class="menu-item">
-                <img src="img/krecek.jpg" alt="Krecek">
-                <h3>Krecek</h3>
-                <p>Komposisi: Kulit sapi, cabai merah, bawang merah, bawang putih, lengkuas, daun salam, santan, gula merah, garam.</p>
-                <p>Rasa: Pedas dan gurih dengan tekstur kenyal.</p>
-                <span class="price">15000</span>
-                <div class="rating">
-                    <span class="star" data-value="5">&#9733;</span>
-                    <span class="star" data-value="4">&#9733;</span>
-                    <span class="star" data-value="3">&#9733;</span>
-                    <span class="star" data-value="2">&#9733;</span>
-                    <span class="star" data-value="1">&#9733;</span>
-                </div>
-                <button class="btn-pesan" data-item="Krecek" data-price="15000">Pesan</button>
+                <img src="data:image/jpeg;base64,<?php echo base64_encode($row['image']); ?>" alt="<?php echo $row['name']; ?>">
+                <h3><?php echo $row['name']; ?></h3>
+                <p><?php echo $row['description']; ?></p>
+                <span class="price"><?php echo $row['price']; ?></span>
+                <button class="btn-pesan" data-item="<?php echo $row['name']; ?>" data-price="<?php echo $row['price']; ?>">Pesan</button>
             </div>
-            <div class="menu-item">
-                <img src="img/gudeg.jpg" alt="Gudeg">
-                <h3>Gudeg</h3>
-                <p>Komposisi: Nangka muda, santan, bawang merah, bawang putih, lengkuas, daun salam, serai, gula merah, garam, ketumbar.</p>
-                <p>Rasa: Manis dan gurih dengan tekstur empuk dari nangka.</p>
-                <span class="price">15000</span>
-                <div class="rating">
-                    <span class="star" data-value="5">&#9733;</span>
-                    <span class="star" data-value="4">&#9733;</span>
-                    <span class="star" data-value="3">&#9733;</span>
-                    <span class="star" data-value="2">&#9733;</span>
-                    <span class="star" data-value="1">&#9733;</span>
-                </div>
-                <button class="btn-pesan" data-item="Gudeg" data-price="15000">Pesan</button>
-            </div>
-            <div class="menu-item">
-                <img src="img/tempetahu.jpg" alt="Tahu/Tempe Bacem">
-                <h3>Tahu/Tempe Bacem</h3>
-                <p>Komposisi: Tahu atau tempe, gula merah, kecap manis, bawang merah, bawang putih, ketumbar, daun salam, lengkuas, air kelapa (opsional), garam.</p>
-                <p>Rasa: Manis dan gurih dengan sedikit aroma rempah.</p>
-                <span class="price">8000</span>
-                <div class="rating">
-                    <span class="star" data-value="5">&#9733;</span>
-                    <span class="star" data-value="4">&#9733;</span>
-                    <span class="star" data-value="3">&#9733;</span>
-                    <span class="star" data-value="2">&#9733;</span>
-                    <span class="star" data-value="1">&#9733;</span>
-                </div>
-                <button class="btn-pesan" data-item="Tahu/Tempe Bacem" data-price="8000">Pesan</button>
-            </div>
-            <div class="menu-item">
-                <img src="img/perkedel.jpg" alt="Perkedel">
-                <h3>Perkedel</h3>
-                <p>Komposisi: Kentang, daging cincang (opsional), bawang merah, bawang putih, daun seledri, telur, garam, merica.</p>
-                <p>Rasa: Gurih dan lembut di dalam, renyah di luar.</p>
-                <span class="price">4000</span>
-                <div class="rating">
-                    <span class="star" data-value="5">&#9733;</span>
-                    <span class="star" data-value="4">&#9733;</span>
-                    <span class="star" data-value="3">&#9733;</span>
-                    <span class="star" data-value="2">&#9733;</span>
-                    <span class="star" data-value="1">&#9733;</span>
-                </div>
-                <button class="btn-pesan" data-item="Perkedel" data-price="4000">Pesan</button>
-            </div>
-            <div class="menu-item">
-                <img src="img/bihun.jpg" alt="Bihun">
-                <h3>Bihun</h3>
-                <p>Komposisi: Bihun (tepung beras), bawang putih, kecap asin, kecap manis, sayuran (seperti wortel, kol), daun bawang, garam, merica, minyak.</p>
-                <p>Rasa: Gurih dan sedikit manis dengan tekstur lembut dan kenyal.</p>
-                <span class="price">5000</span>
-                <div class="rating">
-                    <span class="star" data-value="5">&#9733;</span>
-                    <span class="star" data-value="4">&#9733;</span>
-                    <span class="star" data-value="3">&#9733;</span>
-                    <span class="star" data-value="2">&#9733;</span>
-                    <span class="star" data-value="1">&#9733;</span>
-                </div>
-                <button class="btn-pesan" data-item="Bihun" data-price="5000">Pesan</button>
-            </div>
-            <div class="menu-item">
-                <img src="img/tahu_opor.jpg" alt="Tahu Opor">
-                <h3>Tahu Opor</h3>
-                <p>Komposisi: Tahu, santan, bawang merah, bawang putih, kunyit, ketumbar, kemiri, daun salam, lengkuas, garam, gula.</p>
-                <p>Rasa: Gurih dengan aroma rempah yang kuat, tekstur tahu yang lembut.</p>
-                <span class="price">5000</span>
-                <div class="rating">
-                    <span class="star" data-value="5">&#9733;</span>
-                    <span class="star" data-value="4">&#9733;</span>
-                    <span class="star" data-value="3">&#9733;</span>
-                    <span class="star" data-value="2">&#9733;</span>
-                    <span class="star" data-value="1">&#9733;</span>
-                </div>
-                <button class="btn-pesan" data-item="Tahu Opor" data-price="5000">Pesan</button>
-            </div>
+            <?php endwhile; ?>
         </div>
     </section>
 

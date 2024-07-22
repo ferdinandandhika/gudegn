@@ -26,46 +26,36 @@ body {
 }
 
 .navbar {
-    background-color: #333; /* Change navbar background color to the desired color */
-    color: white; /* Change navbar text color to white */
-    padding: 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center; 
     align-items: center;
+    background-color: #333;
+    padding: 15px 20px;
 }
 
 .navbar-logo {
-    font-family: 'Playfair Display', serif; /* Change font family to Playfair Display */
-    font-size: 24px;
-    font-weight: 700;
-    color: #fff;
-    text-decoration: none;
+    margin-right: auto; /* Push the logo to the left */
 }
 
 .navbar-nav {
-    list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
+    justify-content: center;
+    flex: 1;
 }
 
-.navbar-nav a {
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    margin-right: 15px;
+.navbar-nav a, .navbar-nav span {
+    color: white;
     text-decoration: none;
-    color: #fff;
-}
-
-.navbar-nav a:hover {
-    color: #007BFF;
+    margin: 0 15px;
+    font-size: 18px;
 }
 
 .navbar-extra {
     display: flex;
     align-items: center;
+    margin-left: auto; /* Push the extra items to the right */
 }
+
 
 .navbar-extra a {
     color: #fff;
@@ -107,9 +97,9 @@ body {
     padding: 50px 20px;
     background-color: rgba(0, 0, 0, 0.5);
     color: #fff;
-    background-image: url('path/to/your/background-image.jpg'); /* Tambahkan ini */
-    background-size: cover; /* Sesuaikan ukuran gambar */
-    background-position: center; /* Posisikan gambar di tengah */
+    background-image: url('path/to/your/background-image.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
 .hero h1 {
@@ -251,7 +241,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    display: none; /* Hide by default */
+    display: none;
 }
 
 .cart-item {
@@ -437,7 +427,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    display: none; /* Hide by default */
+    display: none;
 }
 
 #cart-list {
@@ -506,10 +496,6 @@ body {
     color: #fff;
 }
 
-.menu-item {
-    margin-bottom: 20px;
-}
-
 .rating .star {
     cursor: pointer;
     color: #ccc;
@@ -518,12 +504,12 @@ body {
 }
 
 .rating .star.selected {
-    color: #FFD700; /* Gold color for selected stars */
+    color: #FFD700;
 }
 
 .rating .star:hover,
 .rating .star:hover ~ .star {
-    color: #FFD700; /* Gold color for hovered stars */
+    color: #FFD700;
 }
 
 /* Payment Section Styles */
@@ -531,6 +517,11 @@ body {
     padding: 50px 20px;
     background-color: #fff;
     color: #333;
+    max-width: 600px;
+    margin: 50px auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .payment-section h1 {
@@ -547,8 +538,8 @@ body {
 }
 
 .payment-section form {
-    max-width: 800px;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .payment-section label {
@@ -557,7 +548,8 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-.payment-section input {
+.payment-section input,
+.payment-section select {
     width: 100%;
     height: 40px;
     margin-bottom: 20px;
@@ -600,9 +592,11 @@ body {
     background-color: #0056b3;
 }
 
-/* Add this to your style.css file */
-
-.payment-section {
+.register-section,
+.login-section,
+.order-section,
+.admin-section,
+.user-section {
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
@@ -612,86 +606,41 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.payment-section h2 {
+.register-section h2,
+.login-section h2,
+.order-section h2,
+.admin-section h2,
+.user-section h2 {
     margin-bottom: 20px;
 }
 
-.payment-section p {
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-
-.payment-section form {
+.register-section form,
+.login-section form,
+.order-section form {
     display: flex;
     flex-direction: column;
 }
 
-.payment-section label {
+.register-section label,
+.login-section label,
+.order-section label {
     margin-bottom: 10px;
 }
 
-.payment-section select {
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-}
-
-.navbar a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 10px;
-}
-
-.navbar .navbar-logo {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.navbar .navbar-nav {
-    display: flex;
-    align-items: center;
-}
-
-.register-section, .login-section, .order-section, .admin-section, .user-section {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.register-section h2, .login-section h2, .order-section h2, .admin-section h2, .user-section h2 {
-    margin-bottom: 20px;
-}
-
-.register-section form, .login-section form, .order-section form {
-    display: flex;
-    flex-direction: column;
-}
-
-.register-section label, .login-section label, .order-section label {
-    margin-bottom: 10px;
-}
-
-.register-section input, .login-section input, .order-section input, .order-section select, .register-section textarea {
+.register-section input,
+.login-section input,
+.order-section input,
+.order-section select,
+.register-section textarea {
     margin-bottom: 20px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.btn-register, .btn-login, .btn-order {
+.btn-register,
+.btn-login,
+.btn-order {
     padding: 10px 20px;
     background-color: #e2be47;
     color: #333;
@@ -702,8 +651,8 @@ body {
 }
 
 .admin-section {
-    margin: 0 auto; /* Center the section horizontally */
-    max-width: 1000px; /* Set maximum width */
-    width: 100%; /* Set width to 100% */
-    padding: 0 20px; /* Add padding */
+    margin: 0 auto;
+    max-width: 1000px;
+    width: 100%;
+    padding: 0 20px;
 }

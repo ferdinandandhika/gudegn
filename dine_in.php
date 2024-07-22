@@ -36,7 +36,11 @@ session_start();
     <nav class="navbar">
         <a href="#" class="navbar-logo">GUDEG JOGJA IBU DIRJO</a>
         <div class="navbar-nav">
-            <span id="user-greeting"><?php echo isset($_SESSION['fullname']) ? 'Welcome, ' . $_SESSION['fullname'] : ''; ?></span>
+            <span id="user-greeting"><?php echo isset($_SESSION['fullname']) ? 'Halo, ' . $_SESSION['fullname'] : ''; ?></span>
+            <a href="index.php">Home</a>
+            <a href="tentang.php">Tentang</a>
+            <a href="menu.php">Daftar Menu</a>
+            <a href="kontak.php">Kontak</a>
             <a href="logout.php" id="logout-link" style="display: <?php echo isset($_SESSION['fullname']) ? 'block' : 'none'; ?>;">Logout</a>
         </div>
     </nav>
@@ -52,7 +56,7 @@ session_start();
             <label for="payment-method">Metode Pembayaran:</label>
             <select id="payment-method" name="payment-method">
                 <option value="TUNAI">Tunai</option>
-                <option value="TF">Transfer</option>
+                <option value="TF">Transfer BRI-052801022859502</option>
             </select>
             <div id="upload-proof" style="display: none;">
                 <label for="payment-proof">Unggah Bukti Pembayaran:</label>

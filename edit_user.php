@@ -12,15 +12,11 @@ $sql = "SELECT * FROM users WHERE id=$id";
 $result = $conn->query($sql);
 $user = $result->fetch_assoc();
 
-// Handle form submission for updating user
+// Handle form submission for updating user password
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $fullname = $_POST['fullname'];
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $address = $_POST['address'];
     $password = !empty($_POST['password']) ? password_hash($_POST['password'], PASSWORD_BCRYPT) : $user['password'];
 
-    $sql = "UPDATE users SET fullname='$fullname', username='$username', email='$email', address='$address', password='$password' WHERE id=$id";
+    $sql = "UPDATE users SET password='$password' WHERE id=$id";
     $conn->query($sql);
 
     header('Location: user_management.php');
@@ -33,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit User</title>
+    <title>Edit User Password</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .admin-section {
@@ -62,16 +58,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             margin-top: 10px;
             font-weight: bold;
         }
-        input[type="text"], input[type="email"], input[type="password"], textarea {
+        input[type="password"] {
             width: 95%;
             padding: 10px;
             margin-top: 5px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
-        }
-        textarea {
-            resize: vertical;
         }
         .navbar {
             background-color: #333;
@@ -95,30 +88,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <nav class="navbar">
         <a href="admin_dashboard.php" class="navbar-logo">GUDEG JOGJA IBU DIRJO</a>
         <div class="navbar-nav">
-            <span>Welcome, <?php echo $_SESSION['fullname']; ?></span>
-            <a href="admin_dashboard.php">Dashboard</a> <!-- Link to admin dashboard -->
+            <span>Halo, <?php echo $_SESSION['fullname']; ?></span>
+            <a href="admin_dashboard.php">Admin Toko</a> 
             <a href="logout.php">Logout</a>
         </div>
     </nav>
 
     <section class="admin-section">
-        <h2>Edit User</h2>
+        <h2>Edit User Password</h2>
         <form method="POST" action="edit_user.php?id=<?php echo $id; ?>">
-            <label for="fullname">Full Name:</label>
-            <input type="text" name="fullname" id="fullname" value="<?php echo $user['fullname']; ?>" required>
-            <label for="username">Username:</label>
-            <input type="text" name="username" id="username" value="<?php echo $user['username']; ?>" required>
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email" value="<?php echo $user['email']; ?>" required>
-            <label for="address">Address:</label>
-            <textarea name="address" id="address" required><?php echo $user['address']; ?></textarea>
             <label for="password">Password:</label>
-            <input type="password" name="password" id="password">
-            <small>Abaikan password jika tidak ingin menggantinya</small>
+            <input type="password" name="password" id="password" required>
             <button type="submit" class="btn">Save</button>
         </form>
     </section>
 </body>
 </html>
 <?php $conn->close(); ?>
-

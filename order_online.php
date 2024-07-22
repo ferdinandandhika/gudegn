@@ -3,7 +3,7 @@ session_start();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,7 +36,11 @@ session_start();
     <nav class="navbar">
         <a href="#" class="navbar-logo">GUDEG JOGJA IBU DIRJO</a>
         <div class="navbar-nav">
-            <span id="user-greeting"><?php echo isset($_SESSION['fullname']) ? 'Welcome, ' . $_SESSION['fullname'] : ''; ?></span>
+            <span id="user-greeting"><?php echo isset($_SESSION['fullname']) ? 'Halo, ' . $_SESSION['fullname'] : ''; ?></span>
+            <a href="index.php">Home</a>
+            <a href="tentang.php">Tentang</a>
+            <a href="menu.php">Daftar Menu</a>
+            <a href="kontak.php">Kontak</a>
             <a href="logout.php" id="logout-link" style="display: <?php echo isset($_SESSION['fullname']) ? 'block' : 'none'; ?>;">Logout</a>
         </div>
     </nav>
@@ -54,7 +58,7 @@ session_start();
                 <option value="TF">Transfer BRI-052801022859502</option>
                 <option value="TUNAI">Tunai</option>
             </select>
-            <div id="upload-proof" style="display: none;">
+            <div id="upload-proof">
                 <label for="payment-proof">Unggah Bukti Pembayaran:</label>
                 <input type="file" id="payment-proof" name="payment-proof" accept="image/*">
             </div>
@@ -77,7 +81,7 @@ session_start();
 
             if (user) {
                 document.getElementById('user-name').textContent = user.fullname;
-                document.getElementById('user-greeting').textContent = `Welcome, ${user.fullname}`;
+                document.getElementById('user-greeting').textContent = `Halo, ${user.fullname}`;
                 document.getElementById('logout-link').style.display = 'block';
             }
 
@@ -136,6 +140,11 @@ session_start();
 
             const paymentMethodSelect = document.getElementById('payment-method');
             const uploadProofDiv = document.getElementById('upload-proof');
+
+            // Show upload proof by default if Transfer is selected
+            if (paymentMethodSelect.value === 'TF') {
+                uploadProofDiv.style.display = 'block';
+            }
 
             paymentMethodSelect.addEventListener('change', function() {
                 if (paymentMethodSelect.value === 'TF') {

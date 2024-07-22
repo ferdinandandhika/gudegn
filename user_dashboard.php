@@ -25,11 +25,11 @@ $result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Dashboard</title>
+    <title>Dashboard Pengguna</title>
     <link rel="stylesheet" href="style.css">
     <style>
         table {
@@ -92,21 +92,25 @@ $result = $stmt->get_result();
     <nav class="navbar">
         <a href="#" class="navbar-logo">GUDEG JOGJA IBU DIRJO</a>
         <div class="navbar-nav">
-            <span>Welcome, <?php echo $_SESSION['fullname']; ?></span>
+            <span>Selamat datang, <?php echo $_SESSION['fullname']; ?></span>
+            <a href="index.php">Home</a>
+            <a href="tentang.php">Tentang</a>
+            <a href="menu.php">Daftar Menu</a>
+            <a href="kontak.php">Kontak</a>
             <a href="logout.php">Logout</a>
         </div>
     </nav>
 
     <section class="user-section">
-        <h2>Welcome to your dashboard, <?php echo $_SESSION['fullname']; ?></h2>
-        <p>Here you can view your orders and manage your account.</p>
+        <h2>Selamat datang di dashboard Anda, <?php echo $_SESSION['fullname']; ?></h2>
+        <p>Di sini Anda dapat melihat pesanan Anda.</p>
     </section>
 
     <?php
     if ($result->num_rows > 0) {
-        echo "<h2>Your Orders</h2>";
+        echo "<h2>Pesanan Anda</h2>";
         echo "<table>";
-        echo "<tr><th>Order ID</th><th>Fullname</th><th>Items</th><th>Total Price</th><th>Payment Method</th><th>Status</th><th>Payment Proof</th></tr>";
+        echo "<tr><th>ID Pesanan</th><th>Nama Lengkap</th><th>Item</th><th>Total Harga</th><th>Metode Pembayaran</th><th>Status</th><th>Bukti Pembayaran</th></tr>";
         while ($row = $result->fetch_assoc()) {
             echo "<tr>";
             echo "<td>" . $row['id'] . "</td>";
@@ -122,16 +126,16 @@ $result = $stmt->get_result();
             echo "<td>" . $row['status'] . "</td>";
             echo "<td>";
             if ($row['payment_proof']) {
-                echo '<img src="data:image/jpeg;base64,' . base64_encode($row['payment_proof']) . '" alt="Payment Proof" style="width: 100px; height: auto;" onclick="openModal(this)">';
+                echo '<img src="data:image/jpeg;base64,' . base64_encode($row['payment_proof']) . '" alt="Bukti Pembayaran" style="width: 100px; height: auto;" onclick="openModal(this)">';
             } else {
-                echo 'No Proof';
+                echo 'Tidak Ada Bukti';
             }
             echo "</td>";
             echo "</tr>";
         }
         echo "</table>";
     } else {
-        echo "<p>You have no orders.</p>";
+        echo "<p>Anda tidak memiliki pesanan.</p>";
     }
     $stmt->close();
     $conn->close();
@@ -161,5 +165,3 @@ $result = $stmt->get_result();
     </script>
 </body>
 </html>
-
-

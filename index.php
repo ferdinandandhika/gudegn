@@ -4,7 +4,7 @@ include 'db.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,31 +17,51 @@ include 'db.php';
             background-size: cover;
             background-repeat: no-repeat;
         }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 15px 20px;
+        }
+        .navbar-nav {
+            display: flex;
+            justify-content: center;
+            flex: 1;
+        }
+        .navbar-nav a, .navbar-nav span {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+        .navbar-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            text-decoration: none;
+            color: white;
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar" style="background-color: #333;"> <!-- Change background color to lightcoral -->
+    <nav class="navbar">
         <a href="#" class="navbar-logo">GUDEG JOGJA IBU DIRJO</a>
 
         <div class="navbar-nav">
             <?php if (isset($_SESSION['fullname'])): ?>
-                <span>Welcome, <?php echo $_SESSION['fullname']; ?></span>
+                <span>Selamat datang, <?php echo $_SESSION['fullname']; ?></span>
+               <a href="index.php">Home</a>
+                <a href="tentang.php">Tentang</a>
+                <a href="menu.php">Daftar Menu</a>
+                <a href="kontak.php">Kontak</a>
                 <a href="logout.php">Logout</a>
             <?php else: ?>
                 <a href="index.php">Home</a>
-                <a href="tentang.php">About</a>
-                <a href="menu.php">Menu</a>
-                <a href="kontak.php">Contact</a>
-                <?php if (basename($_SERVER['PHP_SELF']) == 'login.php'): ?>
-                    <a href="register.php">Register</a>
-                <?php endif; ?>
+                <a href="tentang.php">Tentang</a>
+                <a href="menu.php">Daftar Menu</a>
+                <a href="kontak.php">Kontak</a>
                 <a href="login.php">Login</a>
             <?php endif; ?>
-        </div>
-
-        <div class="navbar-extra">
-            <a href="#" id="shopping-cart-button"><i data-feather="shopping-cart"></i><span id="cart-count">0</span></a>
-            <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
         </div>
     </nav>
 

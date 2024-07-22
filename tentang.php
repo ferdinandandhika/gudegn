@@ -21,29 +21,53 @@ session_start();
             font-family: 'Playfair Display', serif; 
             color: #6f5001; 
         }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 15px 20px;
+        }
+        .navbar-nav {
+            display: flex;
+            justify-content: center;
+            flex: 1;
+        }
+        .navbar-nav a, .navbar-nav span {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+        .navbar-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            text-decoration: none;
+            color: white;
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar" >
+    <nav class="navbar">
         <a href="#" class="navbar-logo">GUDEG JOGJA IBU DIRJO</a>
 
         <div class="navbar-nav">
             <?php if (isset($_SESSION['fullname'])): ?>
-                <span>Welcome, <?php echo $_SESSION['fullname']; ?></span>
+                <span>Selamat datang, <?php echo $_SESSION['fullname']; ?></span>
+                <a href="index.php">Home</a>
+                <a href="tentang.php">Tentang</a>
+                <a href="menu.php">Daftar Menu</a>
+                <a href="kontak.php">Kontak</a>
                 <a href="logout.php">Logout</a>
             <?php else: ?>
                 <a href="index.php">Home</a>
-                <a href="tentang.php">About</a>
-                <a href="menu.php">Menu</a>
-                <a href="kontak.php">Contact</a>
+                <a href="tentang.php">Tentang</a>
+                <a href="menu.php">Daftar Menu</a>
+                <a href="kontak.php">Kontak</a>
                 <a href="login.php">Login</a>
             <?php endif; ?>
         </div>
 
-        <div class="navbar-extra">
-            <a href="#" id="shopping-cart-button"><i data-feather="shopping-cart"></i><span id="cart-count">0</span></a>
-            <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
-        </div>
     </nav>
 
     <section class="about-us">
@@ -52,6 +76,7 @@ session_start();
             <p>Selamat datang di GUDEG JOGJA IBU DIRJO! Toko Gudeg Jogja Ibu Dirjo berdiri kokoh sejak tahun 1974, meneruskan tradisi lezat keluarga dalam menghadirkan gudeg yang otentik dan kaya rasa. Kami menyajikan gudeg yang dimasak dengan bahan-bahan segar pilihan dan bumbu rahasia yang turun temurun, menghasilkan cita rasa gudeg yang khas dan tak terlupakan.</p>
             <p>Toko Gudeg Jogja Ibu Dirjo buka setiap hari dari pukul 10.00 pagi hingga 16.30 sore. Kami juga menyediakan layanan pesan antar untuk memudahkan pelanggan yang ingin menikmati gudeg kami di rumah.Datang dan kunjungi Toko Gudeg Jogja Ibu Dirjo, rasakan kelezatan gudeg otentik Jogja yang kaya rasa dan penuh tradisi. Kami tunggu kedatangan Anda!</p>
             <img src="img/tentangg.jpeg" alt="Tentang Kami">
+        </div>
     </section>
 
     <script src="script.js"></script>
